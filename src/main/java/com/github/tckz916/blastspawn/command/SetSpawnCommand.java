@@ -24,6 +24,7 @@ public class SetSpawnCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             String locale = PlayerLanguage.getPlayerLanguage(player);
+            boolean isJoin = plugin.getConfig().getBoolean(spawn + ".login");
             if (sender.hasPermission("blastspawn.command.setspawn")) {
 
                 Location location = player.getLocation();
@@ -42,6 +43,11 @@ public class SetSpawnCommand implements CommandExecutor {
                 plugin.getConfig().set(spawn + ".z", z);
                 plugin.getConfig().set(spawn + ".yaw", yaw);
                 plugin.getConfig().set(spawn + ".pitch", pitch);
+                if(isJoin == false) {
+                    plugin.getConfig().set(spawn + ".login", false);
+                } else {
+                    plugin.getConfig().set(spawn + ".login", true);
+                }
                 plugin.saveConfig();
 
                 if (locale != null) {

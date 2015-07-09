@@ -31,6 +31,7 @@ public class CurrentsettingsCommand implements CommandExecutor {
                 String z = plugin.getConfig().getString(spawn + ".z");
                 String yaw = plugin.getConfig().getString(spawn + ".yaw");
                 String pitch = plugin.getConfig().getString(spawn + ".pitch");
+                String login = plugin.getConfig().getString(spawn + ".login");
 
                 if (locale != null) {
                     if (locale.equals("ja_JP")) {
@@ -46,6 +47,7 @@ public class CurrentsettingsCommand implements CommandExecutor {
                 sender.sendMessage(Util.coloring(prefix + "&2z: &3" + z));
                 sender.sendMessage(Util.coloring(prefix + "&2yaw: &3" + yaw));
                 sender.sendMessage(Util.coloring(prefix + "&2pitch: &3" + pitch));
+                sender.sendMessage(Util.coloring(prefix + "&2login: &3" + login));
             } else {
                 if (locale != null) {
                     if (locale.equals("ja_JP")) {

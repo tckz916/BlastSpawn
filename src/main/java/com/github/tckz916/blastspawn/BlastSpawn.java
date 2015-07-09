@@ -3,8 +3,11 @@ package com.github.tckz916.blastspawn;
 import com.github.tckz916.blastspawn.command.CurrentsettingsCommand;
 import com.github.tckz916.blastspawn.command.SetSpawnCommand;
 import com.github.tckz916.blastspawn.command.SpawnCommand;
+import com.github.tckz916.blastspawn.listener.PlayerListener;
 import com.github.tckz916.blastspawn.util.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -16,6 +19,8 @@ import java.io.IOException;
 public class BlastSpawn extends JavaPlugin {
 
     private static BlastSpawn instance;
+
+    private PluginManager plm = Bukkit.getServer().getPluginManager();
 
     public static String prefix = Util.coloring(" [&c&lBSS&r] ");
     public static String spawn = Util.coloring("Spawn");
@@ -40,6 +45,7 @@ public class BlastSpawn extends JavaPlugin {
         }
 
         registercommand();
+        registerlistener();
 
     }
 
@@ -51,6 +57,10 @@ public class BlastSpawn extends JavaPlugin {
         getCommand("currentsettings").setExecutor(new CurrentsettingsCommand());
         getCommand("setspawn").setExecutor(new SetSpawnCommand());
         getCommand("spawn").setExecutor(new SpawnCommand());
+    }
+
+    private void registerlistener(){
+        plm.registerEvents(new PlayerListener(), this);
     }
 
     public static BlastSpawn getInstance() {
