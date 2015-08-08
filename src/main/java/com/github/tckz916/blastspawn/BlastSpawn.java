@@ -6,6 +6,7 @@ import com.github.tckz916.blastspawn.command.SpawnCommand;
 import com.github.tckz916.blastspawn.listener.PlayerListener;
 import com.github.tckz916.blastspawn.util.Util;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,14 +35,21 @@ public class BlastSpawn extends JavaPlugin {
          *config.ymlの生成
          */
         File config = new File(getDataFolder(), "config.yml");
+        YamlConfiguration configFile = YamlConfiguration.loadConfiguration(config);
         if (!config.exists()) {
-            YamlConfiguration configFile = YamlConfiguration.loadConfiguration(config);
-            saveDefaultConfig();
             try {
                 configFile.save(config);
             } catch (IOException ex) {
             }
             reloadConfig();
+        }
+
+        File xml = new File(getDataFolder(),"spawn.xml");
+        if (!xml.exists()) {
+            try {
+                xml.createNewFile();
+            } catch (IOException e) {
+            }
         }
 
         registercommand();
