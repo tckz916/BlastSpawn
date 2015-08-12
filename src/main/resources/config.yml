@@ -1,0 +1,13 @@
+spawn:
+  world: world
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  yaw: 0.0
+  pitch: 0.0
+  #join時に設定した地点にspawn [する=true,しない=false]
+  login: false
+  #join時にプレイヤーのインベントリ内のアイテムを削除 [する=true,しない=false]
+  inventoryclear: false
+  #join時にプレイヤーのエフェクト効果を削除 [する=true,しない=false]
+  effectclear: false

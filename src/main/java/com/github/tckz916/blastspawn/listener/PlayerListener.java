@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.potion.PotionEffect;
 
 /**
  * Created by tckz916 on 2015/07/10.
@@ -23,8 +24,10 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         Location location = player.getLocation();
         boolean isJoin = plugin.getConfig().getBoolean(spawn + ".login");
+        boolean isInventoryclear = plugin.getConfig().getBoolean(spawn + ".inventoryclear");
+        boolean isEffectclear = plugin.getConfig().getBoolean(spawn + ".effectclear");
 
-        if (isJoin == true) {
+        if (isJoin) {
             String getWorld = plugin.getConfig().getString(spawn + ".world");
             World world = Bukkit.getServer().getWorld(getWorld);
             double x = plugin.getConfig().getDouble(spawn + ".x");
@@ -41,8 +44,18 @@ public class PlayerListener implements Listener {
             location.setYaw((float) yaw);
 
             player.teleport(location);
-        } else {
-
         }
+
+        if (isInventoryclear) {
+            player.getInventory().clear();
+        }
+
+        if (isEffectclear) {
+            for (PotionEffect effect : player.getActivePotionEffects()) {
+                player.removePotionEffect(effect.getType());
+            }
+        }
+
+
     }
 }

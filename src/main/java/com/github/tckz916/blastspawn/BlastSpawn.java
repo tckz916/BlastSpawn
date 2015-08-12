@@ -24,7 +24,7 @@ public class BlastSpawn extends JavaPlugin {
     private PluginManager plm = Bukkit.getServer().getPluginManager();
 
     public static String prefix = Util.coloring(" [&c&lBSS&r] ");
-    public static String spawn = Util.coloring("Spawn");
+    public static String spawn = Util.coloring("spawn");
 
     public void onEnable() {
         instance = this;
@@ -34,23 +34,8 @@ public class BlastSpawn extends JavaPlugin {
         /*
          *config.ymlの生成
          */
-        File config = new File(getDataFolder(), "config.yml");
-        YamlConfiguration configFile = YamlConfiguration.loadConfiguration(config);
-        if (!config.exists()) {
-            try {
-                configFile.save(config);
-            } catch (IOException ex) {
-            }
-            reloadConfig();
-        }
 
-        File xml = new File(getDataFolder(),"spawn.xml");
-        if (!xml.exists()) {
-            try {
-                xml.createNewFile();
-            } catch (IOException e) {
-            }
-        }
+        saveDefaultConfig();
 
         registercommand();
         registerlistener();

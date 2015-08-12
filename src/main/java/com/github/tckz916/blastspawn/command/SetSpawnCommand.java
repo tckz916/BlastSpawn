@@ -25,6 +25,8 @@ public class SetSpawnCommand implements CommandExecutor {
             Player player = (Player) sender;
             String locale = PlayerLanguage.getPlayerLanguage(player);
             boolean isJoin = plugin.getConfig().getBoolean(spawn + ".login");
+            boolean isInventoryclear = plugin.getConfig().getBoolean(spawn + ".inventoryclear");
+            boolean isEffectclear = plugin.getConfig().getBoolean(spawn + ".effectclear");
             if (sender.hasPermission("blastspawn.command.setspawn")) {
 
                 Location location = player.getLocation();
@@ -43,10 +45,22 @@ public class SetSpawnCommand implements CommandExecutor {
                 plugin.getConfig().set(spawn + ".z", z);
                 plugin.getConfig().set(spawn + ".yaw", yaw);
                 plugin.getConfig().set(spawn + ".pitch", pitch);
-                if(isJoin == false) {
+                if(!isJoin) {
                     plugin.getConfig().set(spawn + ".login", false);
                 } else {
                     plugin.getConfig().set(spawn + ".login", true);
+                }
+
+                if(!isInventoryclear) {
+                    plugin.getConfig().set(spawn + ".inventoryclear", false);
+                } else {
+                    plugin.getConfig().set(spawn + ".inventoryclear", true);
+                }
+
+                if(!isEffectclear) {
+                    plugin.getConfig().set(spawn + ".effectclear", false);
+                } else {
+                    plugin.getConfig().set(spawn + ".effectclear", true);
                 }
                 plugin.saveConfig();
 

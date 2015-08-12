@@ -27,6 +27,16 @@ public class SpawnCommand implements CommandExecutor {
             Player player = (Player) sender;
             String locale = PlayerLanguage.getPlayerLanguage(player);
             if (sender.hasPermission("blastspawn.command.spawn")) {
+
+                if (plugin.getConfig().get(spawn) == null) {
+                    if (locale.equals("ja_JP")) {
+                        player.sendMessage(Util.coloring(prefix + "&7設定が見つかりません。"));
+                    } else {
+                        player.sendMessage(Util.coloring(prefix + "&7Setting Not Found"));
+                    }
+                    return true;
+                }
+
                 Location location = player.getLocation();
 
                 String getWorld = plugin.getConfig().getString(spawn + ".world");

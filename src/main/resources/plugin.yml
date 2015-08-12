@@ -13,7 +13,7 @@ commands:
         permission: blastspawn.command.currentsettings
     spawn:
         description: Spawn Command
-        aliases: s,hub,lobby
+        aliases: [s,hub,lobby]
         permission: blastspawn.command.spawn
 permissions:
     blastspawn.command.currentsettings:
