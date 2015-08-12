@@ -4,15 +4,21 @@ main: com.github.tckz916.blastspawn.BlastSpawn
 
 commands:
     setspawn:
-        description:
+        description: SetSpawn Command
+        aliases: ss
+        permission: blastspawn.command.setspawn
     currentsettings:
-        description:
+        description: CurrentSettings Command
+        aliases: cs
+        permission: blastspawn.command.currentsettings
     spawn:
-        description:
+        description: Spawn Command
+        aliases: s,hub,lobby
+        permission: blastspawn.command.spawn
 permissions:
     blastspawn.command.currentsettings:
         default: op
     blastspawn.command.setspawn:
         default: op
     blastspawn.command.spawn:
-            default: op
+        default: true
